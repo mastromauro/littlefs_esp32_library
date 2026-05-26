@@ -18,9 +18,9 @@ void setup() {
   //esp_log_set_vprintf(new_vfprintf);
   esp_littlefs_format("storage");
   f.Mount();
-  Serial.println(esp_err_to_name(f.CreateFile("file.txt")));
+  Serial.println(esp_err_to_name(f.CreateFile("/littlefs/file.txt")));
   Serial.println(esp_err_to_name(f.Write("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!")));
-  f.ReadFile(buf, 0);
+  f.ReadFile(buf, 128, 0);
   Serial.print("Buffer: ");
   Serial.println(buf);
   f.Unmount();

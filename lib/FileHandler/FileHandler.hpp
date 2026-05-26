@@ -16,7 +16,7 @@ class FileHandler {
     void Mount();
     esp_err_t CreateFile(const char* file_name);
     void CloseFile();
-    esp_err_t ReadFile(char* buf, long byte_to_read);
+    esp_err_t ReadFile(char* buf, int len, long byte_to_read);
     esp_err_t Write(const char* fmt);
     void Unmount();
 };

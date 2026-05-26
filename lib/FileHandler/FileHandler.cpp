@@ -31,22 +31,23 @@ esp_err_t FileHandler::CreateFile(const char* file_name){
 
 esp_err_t FileHandler::Write(const char *fmt){
   if (file != NULL){
-    fprintf(file, fmt);
+    fprintf(file, "%s", fmt);
     return ESP_OK;
   }
   return ESP_ERR_NOT_FOUND;
 }
 
-esp_err_t FileHandler::ReadFile(char *buf, long byte_to_read){
+esp_err_t FileHandler::ReadFile(char *buf, int len, long byte_to_read){
   if (file == NULL) return ESP_FAIL;
   fseek(file, byte_to_read, SEEK_SET);
-  fgets(buf, sizeof(buf), file);
+  fgets(buf, len, file);
   Serial.println(buf);
   return ESP_OK;
 }
 
 void FileHandler::CloseFile(){
   fclose(file);
+  file = NULL;
 }
 
 void FileHandler::Unmount(){
